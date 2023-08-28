@@ -22,6 +22,9 @@ final class CurlHttpClient extends HttpClient implements HttpClientInterface
     {
         $body = $request->getContent();
 
+        // echo '<pre>' . var_export($url, true) . '</pre>';
+        // echo '<pre>' . var_export($body, true) . '</pre>';
+
         $ch = curl_init($url);
         if (false === $ch) {
             throw new RuntimeException('Can not create curl.');
@@ -34,7 +37,20 @@ final class CurlHttpClient extends HttpClient implements HttpClientInterface
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Inspect CURL config before exec
+        // $info_before = curl_getinfo($ch);
+        // echo '<pre>' . var_export($info_before, true) . '</pre>';
+
         $contents = curl_exec($ch);
+        if ($contents === false) {
+            throw new \Exception('Curl error: ' . curl_error($ch));
+        }
+
+        // Inspect CURL config and response after exec
+        // $info_after = curl_getinfo($ch);
+        // echo '<pre>' . var_export($info_after, true) . '</pre>';
+
         curl_close($ch);
 
         if (!is_string($contents)) {

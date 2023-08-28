@@ -4,6 +4,7 @@ namespace AndrewSvirin\Ebics\Factories;
 
 use AndrewSvirin\Ebics\Models\DownloadOrderResult;
 use AndrewSvirin\Ebics\Models\InitializationOrderResult;
+use AndrewSvirin\Ebics\Models\OrderResult;
 use AndrewSvirin\Ebics\Models\UploadOrderResult;
 
 /**

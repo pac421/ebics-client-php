@@ -145,7 +145,7 @@ class X509 implements X509Interface
      * See {@link http://tools.ietf.org/html/rfc5280#section-4.2.1.1 RFC5280#section-4.2.1.1} and
      * {@link http://tools.ietf.org/html/rfc5280#section-4.2.1.2 RFC5280#section-4.2.1.2}.
      */
-    protected string $currentKeyIdentifier;
+    protected ?string $currentKeyIdentifier;
 
     /**
      * Default Constructor.
@@ -1770,6 +1770,8 @@ class X509 implements X509Interface
             case 'organizationname':
             case 'o':
                 return 'id-at-organizationName';
+            case 'id-at-organizationalunitname':
+                return 'id-at-organizationalUnitName';
             case 'id-at-commonname':
             case 'commonname':
             case 'cn':
